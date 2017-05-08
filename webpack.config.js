@@ -21,6 +21,13 @@ module.exports = {
                 ],
                 loader: 'babel-loader',
                 options: pkg.babel
+            },
+            {
+                test: /\.jsx?$/,
+                include: [
+                    SRC_DIR
+                ],
+                loader: 'eslint-loader'
             }
         ]
     }
