@@ -1,11 +1,18 @@
 {
   "name": "reactio-demo",
   "version": "1.0.0",
-  "description": "Reactio Demo",
+  "description": "Ractio Demo",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "webpack-dev-server --content-base public --open"
   },
+  "keywords": [
+    "React",
+    "Radio",
+    "FM4"
+
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/michaelapfleger/reactio-demo.git"
@@ -15,5 +22,25 @@
   "bugs": {
     "url": "https://github.com/michaelapfleger/reactio-demo/issues"
   },
-  "homepage": "https://github.com/michaelapfleger/reactio-demo#readme"
+  "homepage": "https://github.com/michaelapfleger/reactio-demo#readme",
+  "dependencies": {
+    "react": "^15.5.4",
+    "react-dom": "^15.5.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-1": "^6.24.1",
+    "webpack": "^2.5.1",
+    "webpack-dev-server": "^2.4.5"
+  },
+  "babel": {
+    "presets": [
+      "es2015",
+      "stage-1",
+      "react"
+    ]
+  }
 }
