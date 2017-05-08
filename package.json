@@ -1,0 +1,19 @@
+{
+  "name": "reactio-demo",
+  "version": "1.0.0",
+  "description": "Reactio Demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/michaelapfleger/reactio-demo.git"
+  },
+  "author": "Michaela Pfleger",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/michaelapfleger/reactio-demo/issues"
+  },
+  "homepage": "https://github.com/michaelapfleger/reactio-demo#readme"
+}
