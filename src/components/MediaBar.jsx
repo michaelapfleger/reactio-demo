@@ -37,6 +37,7 @@ export default class MediaBar extends React.Component {
   static propTypes = {
     theme: PropTypes.object.isRequired,
     station: PropTypes.object.isRequired,
+    broadcast: PropTypes.string,
     iconStyleLeft: PropTypes.object,
     onLeftIconButtonTouchTap: PropTypes.func.isRequired,
     style: PropTypes.object,
@@ -53,7 +54,7 @@ export default class MediaBar extends React.Component {
                     onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap} />
             <div style={{ ...styles.headlines, ...this.props.style }}>
                 <h1 style={{ ...styles.headline, ...styles.h1 }}>{this.props.station.name}</h1>
-                <h2 style={styles.headline}>{this.props.station.broadcast}</h2>
+                <h2 style={styles.headline}>{this.props.broadcast}</h2>
             </div>
         </div>
     );

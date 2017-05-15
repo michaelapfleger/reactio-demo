@@ -70,6 +70,7 @@ const routes = [
   station: store.station,
   theme: store.theme,
   dark: store.settings.dark,
+  broadcast: store.program.broadcast,
 }))
 export default class App extends React.Component {
   constructor(props) {
@@ -86,6 +87,7 @@ export default class App extends React.Component {
     station: PropTypes.object,
     theme: PropTypes.object,
     dark: PropTypes.bool,
+    broadcast: PropTypes.string,
   };
 
   componentWillMount() {
@@ -130,7 +132,8 @@ export default class App extends React.Component {
     return <MuiThemeProvider muiTheme={this.props.theme}>
             <Router>
               <div>
-                  <MediaBar station={this.props.station} style={{ paddingLeft }}
+                  <MediaBar station={this.props.station} broadcast={this.props.broadcast}
+                            style={{ paddingLeft }}
                           iconStyleLeft={{ display: this.state.drawer.docked ? 'none' : 'block' }}
                           onLeftIconButtonTouchTap={() => this.toggleDrawer()}
                             height={headerHeight} theme={this.props.theme}/>
