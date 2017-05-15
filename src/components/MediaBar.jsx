@@ -2,7 +2,6 @@ import React from 'react';
 import AppBar from 'material-ui/AppBar';
 import PropTypes from 'prop-types';
 import transitions from 'material-ui/styles/transitions';
-import theme from '../theme';
 
 
 const styles = {
@@ -13,8 +12,6 @@ const styles = {
     boxSizing: 'border-box',
     zIndex: 10,
     transition: transitions.easeOut(null, 'background-color', null),
-    backgroundColor: theme.palette.primary1Color,
-    color: theme.palette.alternateTextColor,
   },
   appBar: {
     boxShadow: 'none',
@@ -38,6 +35,7 @@ const styles = {
 
 export default class MediaBar extends React.Component {
   static propTypes = {
+    theme: PropTypes.object.isRequired,
     station: PropTypes.object.isRequired,
     iconStyleLeft: PropTypes.object,
     onLeftIconButtonTouchTap: PropTypes.func.isRequired,
@@ -48,6 +46,8 @@ export default class MediaBar extends React.Component {
     return (
         <div style={{
           height: this.props.height,
+          backgroundColor: this.props.theme.palette.primary1Color,
+          color: this.props.theme.palette.alternateTextColor,
           ...styles.element }}>
             <AppBar iconStyleLeft={this.props.iconStyleLeft} style={styles.appBar}
                     onLeftIconButtonTouchTap={this.props.onLeftIconButtonTouchTap} />
