@@ -13,6 +13,10 @@ module.exports = {
     plugins: [
         'react'
     ],
+    globals: {
+      test: true,
+      expect: true,
+    },
     env: {
         browser: true,
     },
