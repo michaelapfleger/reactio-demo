@@ -2,7 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import Drawer from 'material-ui/Drawer';
-import AppBar from 'material-ui/AppBar';
 import transitions from 'material-ui/styles/transitions';
 import MenuItem from 'material-ui/MenuItem';
 import PlaylistIcon from 'material-ui/svg-icons/av/playlist-play';
@@ -13,12 +12,25 @@ import Settings from './routes/Settings.jsx';
 import Program from './routes/Program.jsx';
 import About from './routes/About.jsx';
 import Stations from './routes/Stations.jsx';
+import MenuHeader from './components/MenuHeader.jsx';
+import MediaBar from './components/MediaBar.jsx';
+import theme from './theme';
 
+const headerHeight = 160;
 const styles = {
+  dark: {
+    backgroundColor: '#242424',
+    color: '#A9A9A9',
+  },
+  light: {
+    backgroundColor: '#F2F2F2',
+    color: '#363636',
+  },
   content: {
     padding: 16,
     maxWidth: 800,
     transition: transitions.easeOut(null, 'padding-left', null),
+    marginTop: headerHeight,
   },
   menuLink: {
     textDecoration: 'none',
@@ -63,6 +75,9 @@ export default class App extends React.Component {
       },
       station: {
         name: 'Radio FM4',
+        shortName: 'fm4',
+        broadcast: 'Sleepless',
+        website: 'http://fm4.orf.at',
       },
     };
   }
@@ -87,7 +102,7 @@ export default class App extends React.Component {
     this.setState({
       drawer: {
         ...this.state.drawer,
-        // ...alle objekteigenschaften bleiben erhalten-außer die, die ich nachher noch überschreibe
+        // ...alle objekteigenschaften werden kopiert-außer die, die ich nachher noch überschreibe
         open: !this.state.drawer.open,
       },
     });
@@ -100,21 +115,24 @@ export default class App extends React.Component {
   }
 
   render() {
+    document.querySelector('html').style.backgroundColor = styles.dark.backgroundColor;
+    document.querySelector('html').style.color = styles.dark.color;
     const paddingLeft = (this.state.drawer.docked ? 256 : 0) + 16;
 
-    return <MuiThemeProvider>
+    return <MuiThemeProvider muiTheme={theme}>
             <Router>
               <div>
-                  <AppBar title={this.state.station.name} style={{ paddingLeft }}
+                  <MediaBar station={this.state.station} style={{ paddingLeft }}
                           iconStyleLeft={{ display: this.state.drawer.docked ? 'none' : 'block' }}
-                          onLeftIconButtonTouchTap={() => this.toggleDrawer()} />
+                          onLeftIconButtonTouchTap={() => this.toggleDrawer()}
+                            height={headerHeight}/>
                   <Drawer open={this.state.drawer.open} docked={this.state.drawer.docked}
                   onRequestChange={() => this.toggleDrawer()}>
-
+                    <MenuHeader station={this.state.station.shortName} />
                     {routes.map(route =>
                       <Link key={route.link} to={ route.link } style={styles.menuLink}>
                         <MenuItem primaryText={route.title} onTouchTap={() => this.closeDrawer()}
-                                  leftIcon={route.icon}></MenuItem>
+                                  leftIcon={route.icon}/>
                       </Link>)}
 
                   </Drawer>
